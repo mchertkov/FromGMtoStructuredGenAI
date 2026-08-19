@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this living manuscript or its computational notebooks, please cite the dated repository release you used."
+title: "From Graphical Models to Structured Generative AI"
+type: software
+authors:
+  - family-names: Chertkov
+    given-names: Michael
+    affiliation: University of Arizona
+    email: chertkov@arizona.edu
+repository-code: "https://github.com/mchertkov/FromGMtoStructuredGenAI"
+url: "https://github.com/mchertkov/FromGMtoStructuredGenAI"
+license: MIT
+version: "2026.08.19"
+date-released: "2026-08-19"
+keywords:
+  - graphical models
+  - belief propagation
+  - variational inference
+  - loop calculus
+  - generative AI
+  - diffusion models
+  - Feynman-Kac
+  - structured generative models
+  - scientific machine learning
+preferred-citation:
+  type: book
+  title: "From Graphical Models to Structured Generative AI: Inference, Learning, Optimization, Sampling, and Scientific Applications"
+  authors:
+    - family-names: Chertkov
+      given-names: Michael
+  year: 2026
