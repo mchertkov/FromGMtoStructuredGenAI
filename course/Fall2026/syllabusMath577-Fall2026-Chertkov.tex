@@ -1,0 +1,311 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amssymb,amsmath,bm,mathtools}
+\usepackage{mathptmx}
+\usepackage{url}
+\usepackage{longtable,array,booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{topsep=3pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=3pt,itemsep=2pt,parsep=0pt}
+
+\newcommand{\course}{MATH 577-001 -- Topics in Applied Mathematics}
+\newcommand{\coursetitle}{From Graphical Models to Generative AI: Mathematical Foundations, Algorithms, and Modern Applications}
+\newcommand{\booktitle}{From Graphical Models to Structured Generative AI: Inference, Learning, Optimization, Sampling, and Scientific Applications}
+\newcommand{\E}{\mathbb{E}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Syllabus, \course}\\[2mm]
+{\Large\bfseries \coursetitle}\\[2mm]
+{\bfseries Fall 2026}
+\end{center}
+
+\textbf{Class meetings:} Monday and Wednesday, 11:00 AM--12:15 PM.\\
+\textbf{Classroom:} Mathematics Building, Room 514.\\
+\textbf{Instructor:} Michael (Misha) Chertkov, Professor of Mathematics.\\
+\textbf{Office:} Mathematics 416.\\
+\textbf{E-mail:} \href{mailto:chertkov@arizona.edu}{chertkov@arizona.edu}.\\
+\textbf{Office hours:} announced on D2L and by appointment.\\
+\textbf{Course homepage:} D2L, \url{https://d2l.arizona.edu/}. The D2L site will contain dated course notes, the current book draft, notebooks, announcements, submission links, and the anonymized solution/challenge archive.
+
+\section*{Course description}
+
+This graduate course develops a structure-first mathematical route from classical probabilistic graphical models to contemporary generative AI. The central theme is that high-dimensional probability becomes more interpretable and computationally accessible when dependencies, constraints, geometry, or dynamics are represented explicitly. We will study representation, inference, optimization, learning, sampling, and generation through one common language, and then ask two complementary questions:
+\[
+\boxed{\text{How can graphical-model algorithms be neuralized?}}
+\]
+\[
+\boxed{\text{How can modern generative AI be structuralized?}}
+\]
+
+The course begins with graphical models, exact elimination and message passing, variational inference, belief propagation, approximate elimination, Monte Carlo, loop corrections, graphical-model learning, applications, and important special cases. It then moves to neuralized factors/messages/operators, amortized inference, space--time factor graphs, structured scores and diffusion, bridges and Feynman--Kac/path-integral constructions, and structured autoregressive/discrete generation. The emphasis is not only on where an approximation works, but also on how to push it through a crossover into a regime where it becomes inaccurate, unstable, data-limited, or loses its guarantee.
+
+The course is research-oriented. There are \textbf{no midterm or final examinations}. Students will build a portfolio of mathematical/computational solutions, publicly challenge anonymized solutions and examples, give technical presentations, and develop an individual research project connected whenever possible to their own PhD research.
+
+\section*{The course and the living book project}
+
+The principal working text is the instructor's living manuscript
+\begin{center}
+\emph{\booktitle}.
+\end{center}
+As of August 2026 the review-ready draft is approximately 258 pages. Its main architecture and much of the classical material are already in place; Parts III--IV, connecting graphical models to neuralization and structured generative AI, will continue to be expanded during the semester. The current book plan anticipates a roughly 320--350 page final draft by the end of 2026. The course therefore follows the book while simultaneously serving as a testing environment for its explanations, exercises, problems, computational notebooks, and failure-mode experiments.
+
+The current book architecture used by the course is:
+\begin{itemize}
+\item \textbf{Part I: Structured Probability -- General Methodology} (graphical models, exact and approximate inference, transformations, variational methods, MCMC, loop calculus, learning);
+\item \textbf{Part II: Scientific Applications and Special Cases} (applications, MAP structure, soft inference laboratories, advanced structure learning);
+\item \textbf{Part III: Graphical Models Neuralization} (learned factors, messages, operators, corrections, latent-variable and amortized inference);
+\item \textbf{Part IV: Generative AI Structuralization} (space--time graphical models, transport/scores/diffusion, bridges and Feynman--Kac generation, autoregressive/discrete generation, synthesis).
+\end{itemize}
+
+Students are explicitly invited to challenge statements, derivations, examples, figures, notebooks, and exercises in the living book. A mathematically substantive correction, counterexample, missing assumption, stress test, or useful extension can receive course credit. Whether a student's contribution is ultimately incorporated into the book has \emph{no bearing} on the course grade. Contributions incorporated into a public version of the book or repository will be acknowledged with the student's permission.
+
+Because the book evolves during the semester, D2L will contain \textbf{dated releases}. Exercises/problems/challenges are evaluated against the version posted for the corresponding submission window.
+
+\section*{Prerequisites}
+
+Familiarity with fundamental undergraduate mathematics---especially linear algebra, probability, calculus/analysis, and differential equations---is assumed. At least one graduate-level course in Applied Mathematics, Probability, Statistics, Statistical Mechanics, Optimization, or Machine Learning is strongly recommended. Some prior experience with Python or another scientific-computing language is helpful but not required.
+
+\section*{Expected learning outcomes}
+
+After completing the course, a student should be able to:
+\begin{itemize}
+\item formulate a scientific, engineering, or machine-learning problem as a structured probabilistic/graphical model;
+\item derive or implement representative exact and approximate algorithms for inference, optimization, learning, and sampling;
+\item distinguish exact structure from approximation, learned surrogates, and correction mechanisms, and identify useful diagnostics of breakdown;
+\item explain the principal modes of graphical-model neuralization: learned factors, messages, operators, proposals, and corrections;
+\item formulate generative processes using space--time graphical structure and explain how structure enters flows, scores, diffusion, bridges, and discrete/autoregressive generation;
+\item reproduce a baseline result, stress-test it, and develop a mathematically motivated extension;
+\item read current research papers critically and present/defend mathematical and computational work clearly;
+\item bring graphical-model/structured-probability methodology, reinforced by modern AI/GenAI tools, into a problem related to the student's own research.
+\end{itemize}
+
+\section*{Course organization}
+
+The semester has three parallel tracks.
+
+\textbf{1. Common mathematical spine.} The instructor will lead the core lectures through the classical graphical-model material and the central mathematics of neuralization and structured GenAI.
+
+\textbf{2. Research studios and individual projects.} Students will organize around broad application studios while retaining individual project ownership. Initial studios are expected to include:
+\begin{itemize}
+\item quantum systems, tensor networks, gauges, and loop structure;
+\item neural/biological systems and learned message-passing dynamics;
+\item energy and networked infrastructure systems;
+\item continuous structured GenAI: diffusion, bridges, stochastic control, Feynman--Kac and path-integral methods;
+\item discrete structured GenAI and language: coding, discrete diffusion, autoregressive generation, Sampling Decisions, and LLM-related structure.
+\end{itemize}
+Students may propose other directions.
+
+\textbf{3. Book laboratory.} Exercises, problems, challenges, notebook extensions, counterexamples, stress tests, and corrections to the living book constitute an important part of the course portfolio.
+
+A typical technical meeting will combine mathematical development, one worked/notebook example, and discussion of a stress test, open problem, student solution, or project connection. From late October onward, portions of selected meetings will be used for student-led frontier presentations and project clinics.
+
+\section*{Assessment: a 1--2--3--4 course-credit system}
+
+There are no examinations. The final grade is determined by accumulated \textbf{course credits}. The basic unit is intentionally simple:
+
+\begin{center}
+\begin{tabular}{p{0.25\textwidth} p{0.12\textwidth} p{0.53\textwidth}}
+\toprule
+\textbf{Contribution} & \textbf{Credits} & \textbf{Typical meaning}\\
+\midrule
+Exercise & 1 & A focused derivation, computation, verification, or concise correction using material already developed in class/book.\\
+Problem & 2 & A nontrivial synthesis, derivation, reproduction, algorithmic comparison, or substantial notebook extension.\\
+Challenge & 3 & An open-ended task: counterexample, failure-regime/stress-test analysis, substantive challenge to an approved solution or book example, research-level extension, or comparably difficult contribution.\\
+Presentation & 4 & A substantive technical presentation: normally one frontier/special-topic presentation and the final individual project presentation.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Core portfolio windows}
+
+There are six portfolio windows. Within each window, a student may choose from Exercises, Problems, and Challenges associated with the relevant book chapters and lectures. \textbf{At most 4 credits per window count toward the standard 40-credit course total, and at most 2 of those 4 credits may come from Exercises.} This gives flexibility while ensuring that an A cannot be earned by accumulating only routine exercises.
+
+A student's own original challenge to an instructor/book example may be submitted even when it was not pre-listed as an assignment. The instructor determines whether it is best classified as an Exercise (1), Problem (2), or Challenge (3).
+
+\subsection*{Anonymous submission, screening, posting, and challenge}
+
+For an Exercise, Problem, or Challenge:
+\begin{enumerate}
+\item Submit an anonymous-to-peers solution through D2L by the stated deadline. For mathematical work, a nameless PDF prepared in LaTeX is preferred; computational work should include a reproducible notebook/script and a concise explanation.
+\item The instructor can see the student's identity and performs a preliminary screen. Approved items are posted anonymously for class inspection. \textbf{Preliminary approval is not a certification that the solution is error-free.}
+\item Other students may challenge a posted solution by the corresponding challenge deadline. A useful challenge should identify a specific error, missing assumption, counterexample, stronger alternative, or diagnostic experiment. Challenges to the instructor's examples and book notebooks are equally welcome.
+\item If a substantive challenge is raised, the original author may respond or revise. Final credit is assigned after resolution.
+\end{enumerate}
+
+This process is intended to make verification part of the mathematics rather than an afterthought.
+
+\subsection*{AI tools}
+
+Modern AI tools may be used for portfolio work, coding, literature exploration, project development, and presentations. Students remain responsible for every submitted statement, derivation, citation, and computational result. Meaningful AI use must be disclosed briefly at the end of the submission (for example: ``AI tools were used for code debugging and language editing; all derivations/results were independently checked.'').
+
+The instructor may request a short \emph{solution conversation}---typically 5--8 minutes---about any submitted item before finalizing credit. A student must be able to explain the mathematical object, the reasoning, and the verification/stress test. Work that cannot be explained or verified may be returned for revision or receive no credit. The purpose is not to prohibit AI assistance, but to distinguish assistance from understanding.
+
+\subsection*{Individual research project}
+
+Every student completes an individual project. Collaboration inside a studio is encouraged, but each student must have an identifiable individual contribution. The project follows the progression
+\[
+\boxed{\text{formulate} \;\longrightarrow\; \text{reproduce/baseline} \;\longrightarrow\; \text{stress-test} \;\longrightarrow\; \text{extend}.}
+\]
+A careful negative result is acceptable and can be excellent work.
+
+Project milestones use the same credit language:
+\begin{itemize}
+\item \textbf{Project card} (required, no credit): one page defining the question, relation to the student's research, candidate baseline/reference, and initial reading list.
+\item \textbf{Baseline/reproduction} (Problem = 2 credits): reproduce or derive a reference result against which later work can be assessed.
+\item \textbf{Stress test/failure analysis} (Challenge = 3 credits): identify a parameter/regime in which the baseline becomes inaccurate, unstable, computationally difficult, data-limited, or loses a guarantee; define a diagnostic whenever possible.
+\item \textbf{Final extension and reproducible artifact} (Challenge = 3 credits): a mathematically motivated extension, structured/neuralized modification, new analysis, or carefully documented negative result, together with a short report and reproducible code/notebook when applicable.
+\item \textbf{Final project presentation} (Presentation = 4 credits).
+\end{itemize}
+
+In addition, each student is expected to give one \textbf{frontier/special-topic presentation} during the second half of the semester (Presentation = 4 credits). Depending on enrollment, frontier presentations may be paired; each student must make a substantive contribution.
+
+\subsection*{Nominal 40-credit structure and letter grades}
+
+The standard semester contains up to 40 credits:
+\[
+24\ \text{core portfolio} + 8\ \text{project milestones} + 4\ \text{frontier presentation} + 4\ \text{final project presentation} = 40.
+\]
+Accepted book corrections, peer challenges, or exceptional extensions are classified under the same 1--2--3 system and normally count inside the relevant portfolio window rather than as an unlimited extra-credit category.
+
+Letter grades are determined as follows. Because credits encode qualitatively different levels of work rather than uniform percentage points, these thresholds should not be read as a conventional percentage scale:
+\begin{center}
+\begin{tabular}{p{0.10\textwidth} p{0.18\textwidth} p{0.60\textwidth}}
+\toprule
+\textbf{Grade} & \textbf{Course credits} & \textbf{Additional expectation}\\
+\midrule
+A & 34 or more & Excellent sustained mastery; all project milestones and final presentation completed.\\
+B & 28--33 & Strong graduate-level mastery; all project milestones and final presentation completed.\\
+C & 22--27 & Adequate graduate-level mastery; all project milestones and final presentation completed.\\
+D & 16--21 & Insufficient mastery of a substantial portion of the course.\\
+E & below 16 & Insufficient course work.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Completion of the project baseline, project stress test, final project artifact, and final project presentation is required for a grade of C or higher. When circumstances warrant, a deficient milestone may be revised by arrangement with the instructor.
+
+\textbf{Late work.} Deadlines matter because approved solutions are subsequently released to the class. Exercise, Problem, or Challenge submissions received after the corresponding solutions have been posted normally cannot earn standard credit, except for approved accommodations or circumstances arranged with the instructor. Project milestones should be discussed with the instructor in advance if a deadline problem is anticipated.
+
+\section*{Tentative schedule, topics, and deadlines}
+
+Fall 2026 regular-session classes run August 24--December 9. There is no class on Labor Day (September 7) or Veterans Day (November 11). The final project artifact is due during the University's final-assessment period. The schedule may move modestly with the pace of the course and the development of the living book; grading and absence policies will not change without the protections specified by University policy.
+
+\small
+\begin{longtable}{p{1.45cm} p{2.75cm} p{8.9cm}}
+\toprule
+\textbf{Week} & \textbf{Dates} & \textbf{Topics / activities / deadlines}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Week} & \textbf{Dates} & \textbf{Topics / activities / deadlines}\\
+\midrule
+\endhead
+
+1 & Aug 24, 26 & \textbf{Course map and research directions.} The Rosetta Stone: representation, inference, optimization, learning, sampling/generation; three mathematical spines; why structure matters now. Introduction to the living book and five research studios. \textbf{Research-interest note due Aug 25, 5 PM} (required, ungraded).\\
+
+2 & Aug 31, Sep 2 & Student 3-minute research lightning talks and provisional studio matching. \textbf{Book Ch. 2:} factors, factor graphs, Gibbs/Ising and Gaussian models, directed models, partition functions and the basic computational tasks.\\
+
+3 & Sep 7, 9 & \textbf{Sep 7: Labor Day -- no class.} \textbf{Book Ch. 3:} exact elimination, fill-in/treewidth, dynamic programming, sum-product BP on trees and junction-tree logic. \textbf{Project card due Sep 11, 5 PM} (required, ungraded).\\
+
+4 & Sep 14, 16 & \textbf{Chs. 4--5:} MAP, marginals, variational formulation, generation and learning as related computational tasks; transformations, reparametrizations, gauges, computation/self-avoiding trees. \textbf{Portfolio Window 1 (Chs. 1--3) due Sep 18, 5 PM.}\\
+
+5 & Sep 21, 23 & \textbf{Ch. 6:} mean field, Bethe free energy, local consistency, BP as stationarity/gauge fixing, TRW, convergence and failure regimes. \textbf{Window 1 peer/book challenges due Sep 25, 5 PM.}\\
+
+6 & Sep 28, 30 & \textbf{Chs. 7--8:} approximate elimination, mini-buckets, low-rank/coarse-graining ideas; MCMC, invariance, mixing, exact sampling and diagnostics. \textbf{Portfolio Window 2 (Chs. 4--6) due Oct 2, 5 PM.}\\
+
+7 & Oct 5, 7 & \textbf{Chs. 9--10:} loop calculus and exact corrections beyond BP; fractional BP; loop sampling/proof ideas; tensor-network connection; graphical-model learning, hidden variables and energy-based gradients. \textbf{Project baseline/reproduction due Oct 9, 5 PM (2 credits). Window 2 peer/book challenges due Oct 9, 5 PM.}\\
+
+8 & Oct 12, 14 & \textbf{Chs. 11--14:} applications and the stress-test principle; structured special cases in MAP, soft inference, Gaussian models/permanents/planarity, and advanced structure learning. \textbf{Portfolio Window 3 (Chs. 7--10) due Oct 16, 5 PM. Frontier-presentation sign-up by Oct 16.}\\
+
+9 & Oct 19, 21 & \textbf{Ch. 15: Graphical-model neuralization.} Learned factors, unfolded/learned messages, GNNs as message-passing mechanisms, amortized operators, neural coarse graining, learning references and residual corrections. \textbf{Window 3 peer/book challenges due Oct 23, 5 PM.}\\
+
+10 & Oct 26, 28 & \textbf{Ch. 16:} latent variables, EM $\rightarrow$ variational inference/ELBO $\rightarrow$ amortization/VAEs; predict-then-correct philosophy. First frontier presentations and project clinic. \textbf{Portfolio Window 4 (Chs. 11--15) due Oct 30, 5 PM.}\\
+
+11 & Nov 2, 4 & \textbf{Chs. 17--18:} from static factors to space--time graphical models; PoE/PoIE/PoPE distinction; structure in transport, normalizing flows, scores and diffusion; locality and its loss under smoothing. \textbf{Project stress test/failure analysis due Nov 6, 5 PM (3 credits). Window 4 peer/book challenges due Nov 6, 5 PM.}\\
+
+12 & Nov 9, 11 & \textbf{Nov 9 -- Ch. 19:} bridges, Doob transforms, stochastic control, Feynman--Kac correction, path-integral generation and proposal/correction design. \textbf{Nov 11: Veterans Day -- no class.}\\
+
+13 & Nov 16, 18 & \textbf{Chs. 20--21:} autoregressive factorization, transformers as conditional approximators, discrete diffusion, structured decoding/Sampling Decisions, and synthesis across generative architectures. Frontier presentations. \textbf{Portfolio Window 5 (Chs. 16--19) due Nov 20, 5 PM.}\\
+
+14 & Nov 23, 25 & Frontier presentations, book-challenge session, project studios/clinics, and connections to quantum/tensors, biological systems, energy networks, continuous diffusion/bridges, discrete GenAI/LLMs. \textbf{Window 5 peer/book challenges due Nov 25, 5 PM.}\\
+
+15 & Nov 30, Dec 2 & \textbf{Final individual project presentations / studio symposium.} \textbf{Portfolio Window 6 (Chs. 20--21 and course synthesis) due Dec 4, 5 PM.}\\
+
+16 & Dec 7, 9 & \textbf{Final individual project presentations / course synthesis.} What should remain explicit structure? What should be approximated or learned? What can be corrected exactly? \textbf{Window 6 peer/book challenges due Dec 9, 5 PM.}\\
+
+Final assessment & Dec 16 & \textbf{Final project extension/reproducible artifact due Dec 16, 5 PM (3 credits).} No final examination.\\
+
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section*{Frontier presentation format}
+
+A frontier presentation should not be a generic paper summary. It should answer, as appropriate:
+\begin{enumerate}
+\item What is the mathematical/probabilistic object?
+\item What is the classical structured reference or baseline?
+\item What is learned, neuralized, approximated, or corrected?
+\item Which explicit structure is retained?
+\item What guarantee or interpretability is gained/lost?
+\item What parameter/regime should be varied to expose failure?
+\item How does the topic connect to the student's project or to the book's architecture?
+\end{enumerate}
+Normally presentations are 12--20 minutes depending on enrollment and whether they are individual or paired.
+
+\section*{Texts, notes, and computational resources}
+
+\textbf{No purchased textbook is required.} Primary materials are:
+\begin{enumerate}
+\item M. Chertkov, \emph{\booktitle}, living manuscript, 2026. Dated course versions will be distributed through D2L.
+\item M. Chertkov, \emph{Mathematics of Generative AI}, World Scientific (forthcoming, 2026), with living notebooks at \url{https://github.com/mchertkov/Mathematics-of-Generative-AI-Book}.
+\end{enumerate}
+
+Recommended references include:
+\begin{enumerate}
+\item M. Wainwright and M. Jordan, \emph{Graphical Models, Exponential Families, and Variational Inference}, Foundations and Trends in Machine Learning, 2008.
+\item M. M\'ezard and A. Montanari, \emph{Information, Physics, and Computation}, Oxford University Press, 2009.
+\item D. Koller and N. Friedman, \emph{Probabilistic Graphical Models: Principles and Techniques}, MIT Press, 2009.
+\item K. Murphy, \emph{Probabilistic Machine Learning: Advanced Topics}, MIT Press, 2023.
+\item S. Sutton and A. Barto, \emph{Reinforcement Learning: An Introduction}, MIT Press, 2018.
+\end{enumerate}
+
+The course uses lightweight Python/Jupyter computational laboratories wherever useful. Students may also use PyTorch, Julia, MATLAB, Mathematica, or other appropriate modern scientific software. The goal is mathematical insight and reproducibility rather than production-scale engineering.
+
+\section*{Attendance and participation}
+
+Regular and punctual attendance is expected. There is no separate attendance percentage in the grade: participation is assessed through solution/challenge discussions, project studios, and presentations. Because many meetings involve peer discussion and research presentations, students should notify the instructor in advance when possible if they must miss class. University-approved and religiously required absences will be accommodated in accordance with University policy.
+
+\section*{Academic integrity, collaboration, and attribution}
+
+Collaboration and discussion are encouraged, particularly within project studios and during the public challenge phase. Unless a task is explicitly designated as a group submission, however, the submitted mathematical/computational artifact must represent the student's own understood and verified work. Sources, collaborators, and meaningful AI assistance must be acknowledged. Anonymous posting is anonymity to classmates, not anonymity to the instructor.
+
+Students are expected to follow the University of Arizona Code of Academic Integrity and all applicable University policies.
+
+\section*{University policies and resources}
+
+All students must familiarize themselves with the University policies and resources collected at
+\begin{center}
+\url{https://catalog.arizona.edu/syllabus-policies}.
+\end{center}
+This page includes policies on class attendance and participation, religious accommodations, threatening behavior, accessibility and accommodations, academic integrity, nondiscrimination and anti-harassment, and campus safety.
+
+\textbf{Accessibility and accommodations.} At the University of Arizona, we strive to make learning experiences as accessible as possible. If you anticipate or experience barriers based on disability or pregnancy, please contact the Disability Resource Center, (520) 621-3268, \url{https://drc.arizona.edu/}, to establish reasonable accommodations.
+
+\textbf{Withdrawal and enrollment deadlines.} Students are responsible for the current Registrar deadlines for dropping/withdrawing from courses; see \url{https://registrar.arizona.edu/dates-and-deadlines}.
+
+\textbf{Final assessment.} The course has no final examination. The final project artifact due December 16 is the course's summative assessment during the Fall 2026 final-examination period.
+
+\textbf{Subject to change.} Information contained in this syllabus, other than the grade and absence policies, may be subject to change with reasonable advance notice, as deemed appropriate by the instructor. Schedule changes will be announced in class and on D2L.
+
+\end{document}
