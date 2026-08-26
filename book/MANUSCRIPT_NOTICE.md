@@ -1,6 +1,6 @@
 # Working-manuscript notice
 
-`FromGMtoStructuredGenAI_draft.pdf` is a living, pre-publication manuscript:
+`FromGMtoStructuredGenAI???.pdf` (where ??? stands for the date of the most recent version) is a living, pre-publication manuscript:
 
 **Michael (Misha) Chertkov, _From Graphical Models to Structured Generative AI: Inference, Learning, Optimization, Sampling, and Scientific Applications_.**
 
