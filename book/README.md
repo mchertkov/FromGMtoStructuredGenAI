@@ -2,7 +2,7 @@
 
 This directory contains the current compiled working manuscript:
 
-- `FromGMtoStructuredGenAI_draft.pdf`
+- `FromGMtoStructuredGenAI_???.pdf` where ??? stands for the date of the most recent version
 
 The repository keeps a stable filename so links used by the course remain valid as the draft is updated. Dated milestones are recorded in `CHANGELOG.md` and, once the GitHub repository is live, should also be preserved through GitHub Releases/tags.
 
