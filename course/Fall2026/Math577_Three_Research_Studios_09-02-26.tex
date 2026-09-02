@@ -1,0 +1,302 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\definecolor{UAblue}{RGB}{12,35,75}
+\definecolor{UAred}{RGB}{171,5,32}
+\definecolor{UAlight}{RGB}{244,246,249}
+\definecolor{UAgray}{RGB}{90,95,105}
+
+\hypersetup{colorlinks=true,linkcolor=UAblue,urlcolor=UAblue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=1.35em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.55em,itemsep=2pt,topsep=3pt}
+\renewcommand{\arraystretch}{1.18}
+
+\newcommand{\studio}[1]{\section{#1}}
+\newcommand{\bookch}[1]{\textbf{Ch.~#1}}
+\newcommand{\keybox}[1]{%
+  \begin{center}
+  \setlength{\fboxsep}{8pt}%
+  \colorbox{UAlight}{\parbox{0.93\linewidth}{#1}}
+  \end{center}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries MATH 577 --- Three Research Studios}\\[1.5mm]
+{\large From Graphical Models to Structured Generative AI}\\[1mm]
+{\normalsize Fall 2026}\\[3mm]
+\end{center}
+
+%\keybox{\textbf{Working book reference.} All chapter and section references below refer to the August 30, 2026 course build of Michael (Misha) Chertkov, \emph{From Graphical Models to Structured Generative AI: Inference, Learning, Optimization, Sampling, and Scientific Applications}, including the studio-literature integration completed on August 30, 2026.}
+
+\section*{How the studios are meant to work}
+
+The three studios are \emph{research neighborhoods}, not group projects and not rigid tracks. Each student retains ownership of an individual project. The purpose of a studio is to create a small community in which mathematical tools, benchmark problems, computational experiments, and recent literature can be reused across projects. Cross-studio interaction is explicitly encouraged.
+
+The three studios are:
+\begin{enumerate}
+    \item \textbf{Continuous Structured GenAI};
+    \item \textbf{Quantum / Statistical Physics / Information};
+    \item \textbf{Optimization / Networked Systems}.
+\end{enumerate}
+
+They share the book's common structure-first viewpoint: identify the exact probabilistic or optimization object first; expose known structure and constraints explicitly; then decide what should be approximated, learned, transported, sampled, or corrected.
+
+
+\section*{Project card, reading choice, and the frontier-to-project arc}
+
+\keybox{\textbf{Project Card --- due September 11, 6 PM.} The one-page Project Card should identify a provisional studio/home, a tentative research question, its relation to the student's interests or research, a plausible baseline/reference calculation, and an initial reading set of \textbf{at least one and no more than three papers}. The paper choices may be revised later as the project sharpens.}
+
+The paper lists below are \textbf{suggested starting points, not a closed reading list}. Students are welcome---and encouraged---to bring in other relevant papers, including papers connected directly to their own research. A proposed paper does not need to appear in the book bibliography, but the student should be able to explain its mathematical object, the explicit structure it uses or discards, and why it provides a useful baseline, frontier, or extension for the project.
+
+\textbf{Frontier presentation $\longrightarrow$ final project.} Students are strongly encouraged, and normally expected, to make the frontier/special-topic presentation and the final project parts of the same research arc. A natural pattern is:
+\[
+\boxed{\text{read 1--3 papers}\;\longrightarrow\;\text{frontier presentation on 1--2}\;\longrightarrow\;\text{reproduce/stress-test}\;\longrightarrow\;\text{project extension}.}
+\]
+The frontier presentation should therefore do more than summarize a paper: it should identify the central mathematical/probabilistic object, the structured baseline, what is learned or approximated, what remains verifiable, and a regime in which the method may fail. The final project can then grow from that analysis by reproducing a central result, pushing it through a controlled stress test, and developing an extension or a carefully documented negative result. Research sometimes changes direction; a well-motivated change of paper or project focus is entirely acceptable after discussion with the instructor.
+
+\section*{Common mathematical backbone}
+
+All three studios draw from the same core chapters. Chapters 2--6 establish graphical representations, exact elimination and dynamic programming, MAP and soft inference, gauge/reparametrization ideas, and variational/message-passing approximations. Chapters 7--10 add approximate elimination, Monte Carlo, loop corrections, and learning. Chapter 15 asks what it means to neuralize a factor, message, solver/operator, or reference/correction mechanism. Chapter 21 then returns to the common design question: \emph{what should remain explicit structure, what should be learned, and what can be checked or corrected exactly?}
+
+A useful summary is given by the book's three signature spines:
+\[
+\text{trees}\to\text{exact BP}\to\text{loopy BP}\to
+\text{gauges}\to\text{loop corrections}\to\text{tensor contraction},
+\]
+\[
+\text{Markov processes}\to\text{MCMC/Langevin}\to\text{time reversal}\to
+\text{Doob/bridges}\to\text{controlled or guided generation},
+\]
+and the transverse design principle
+\[
+\boxed{\text{structured reference}\to\text{explicit correction}\to
+\text{optimization/neuralization of the reference or correction}.}
+\]
+
+\studio{Studio I: Continuous Structured GenAI}
+
+\textbf{Scope.} Scientific trajectories and fields; imaging and inverse problems; molecular and protein ensembles; diffusion and transport; sampling, steering, and conditioning; stochastic control; and explicit scientific constraints.
+
+The central question is how to construct a generative mechanism for a distribution or path law when part of the structure is already known. Depending on the application, the known part may be a physical forward operator, locality pattern, conservation law, dynamical model, terminal condition, feasible set, or factorized energy. The learned component should then be asked to represent only what is genuinely unavailable or computationally difficult.
+
+\textbf{Primary book map.}
+\begin{itemize}
+    \item \bookch{8}, \emph{Markov Chain Monte Carlo: Invariance, Mixing, and Exact Sampling}: equilibrium sampling, mixing diagnostics, annealing, and trajectory-based estimators.
+    \item \bookch{11}, \emph{Applications: Structure as the Common Language}: scientific trajectories, particle tracking, biological systems, and reusable structured benchmarks; the August 30 integration adds protein conformational-ensemble generation.
+    \item \bookch{15}, \emph{Neuralizing Graphical Models}: learned factors, messages, operators, and residual/reference corrections.
+    \item \bookch{17}, \emph{Structured Generative Processes: From Static Factors to Space--Time Graphs}: space--time factor graphs, composition of experts, hard constraints, and path functionals.
+    \item \bookch{18}, \emph{Structured Transport, Scores, and Diffusion}: structured scores and diffusion, physics-informed diffusion, known forward operators in inverse problems, inference-time control, and protein-ensemble generation.
+    \item \bookch{19}, \emph{Structured Bridges, Doob Transforms, and Path-Integral Generation}: conditioning of path measures, Schr\"odinger bridges, path-integral/linearly solvable control, Feynman--Kac/importance correction, and scientific constraints as control information.
+    \item \bookch{21}, \emph{Structured Generative Architectures: Synthesis}: known structure plus learned residual and exact correction as a design principle.
+\end{itemize}
+
+\textbf{Characteristic research questions.}
+\begin{itemize}
+    \item Can a learned diffusion, flow, bridge, or controller be treated as a \emph{proposal} while a separate correction layer preserves the desired target law?
+    \item Should a scientific constraint enter as a hard support restriction, a soft energy/reward, a projection, a conditioning event, or a path-space control term?
+    \item What locality is present in the original physical model, and how much of it survives smoothing, marginalization, or diffusion?
+    \item When should one learn a full score/drift/operator, and when is it better to learn only a residual on top of a known component?
+\end{itemize}
+
+\textbf{Natural stress-test parameters.} Noise level or diffusion horizon; inverse-problem ill-conditioning; barrier height; dimension; model mismatch; strength of a physical constraint; rarity of a terminal event; path-weight variance/effective sample size; or the gap between a learned proposal and an exactly specified target.
+
+\textbf{Examples of suitable project directions.} Structured diffusion for a small inverse problem with a known forward operator; protein or molecular ensemble generation with an explicit physical factor; bridge sampling with terminal constraints; comparison of soft guidance with exact projection/rejection; or a Feynman--Kac-corrected learned transport in which both bias and weight degeneracy are measured.
+
+\textbf{Suggested starting papers (not exhaustive).}
+\begin{enumerate}[leftmargin=1.7em,itemsep=5pt]
+    \item Y.~Song, J.~Sohl-Dickstein, D.~P.~Kingma, A.~Kumar, S.~Ermon, and B.~Poole (2021), \emph{Score-Based Generative Modeling through Stochastic Differential Equations}, ICLR 2021. \href{https://arxiv.org/abs/2011.13456}{arXiv:2011.13456}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} the basic reverse-time SDE/score framework and a clean reference for asking what changes when known structure, constraints, or scientific operators are introduced (Ch.~18).}
+
+    \item V.~De Bortoli, J.~Thornton, J.~Heng, and A.~Doucet (2021), \emph{Diffusion Schr\"odinger Bridge with Applications to Score-Based Generative Modeling}, NeurIPS 2021. \href{https://arxiv.org/abs/2106.01357}{arXiv:2106.01357}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} endpoint matching and bridge dynamics provide a natural baseline for Ch.~19 and for projects comparing unconstrained diffusion with conditioned path measures.}
+
+    \item J.-H.~Bastek, W.~Sun, and D.~M.~Kochmann (2025), \emph{Physics-Informed Diffusion Models}, ICLR 2025. \href{https://arxiv.org/abs/2403.14404}{arXiv:2403.14404}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a concrete training-time route for imposing governing-equation residuals, ideal for separating ``physics-informed'' penalties from exact constraint preservation (Ch.~18).}
+
+    \item S.~Khalafi, I.~Hounie, D.~Ding, and A.~Ribeiro (2025), \emph{Composition and Alignment of Diffusion Models using Constrained Learning}, NeurIPS 2025. \href{https://arxiv.org/abs/2508.19104}{arXiv:2508.19104}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} explicit constrained optimization for composition/alignment; a strong entry point to the book's distinction between penalties, constraints, and compositional generative structure (Chs.~17--18).}
+
+    \item M.~Skreta, T.~Akhound-Sadegh, V.~Ohanesian, R.~Bondesan, A.~Aspuru-Guzik, A.~Doucet, R.~Brekelmans, A.~Tong, and K.~Neklyudov (2025), \emph{Feynman--Kac Correctors in Diffusion: Annealing, Guidance, and Product of Experts}. \href{https://arxiv.org/abs/2503.02819}{arXiv:2503.02819}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} proposal/correction design, product composition, and the distinction between formal exactness and practical weight degeneracy connect directly to Chs.~17 and 19.}
+
+    \item B.~Song, Z.~Zhang, Z.~Luo, J.~Hu, W.~Yuan, J.~Jia, Z.~Tang, G.~Wang, and L.~Shen (2025), \emph{CCS: Controllable and Constrained Sampling with Diffusion Models via Initial Noise Perturbation}. \href{https://arxiv.org/abs/2502.04670}{arXiv:2502.04670}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} inference-time steering with an explicitly testable operating-regime approximation; especially suitable for a project built around a controlled failure/stress test (Ch.~18).}
+
+    \item A.~Sengar, A.~Hariri, D.~Probst, P.~Barth, and P.~Vandergheynst (2025), \emph{Generative Modeling of Full-Atom Protein Conformations using Latent Diffusion on Graph Embeddings}. \href{https://arxiv.org/abs/2506.17064}{arXiv:2506.17064}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a scientific-generation example in which local graph/geometric representation and global ensemble fidelity can be tested separately (Chs.~11 and 18).}
+\end{enumerate}
+
+
+\studio{Studio II: Quantum / Statistical Physics / Information}
+
+\textbf{Scope.} Quantum states and information; classical and quantum spin systems; random media and frustrated models; belief propagation and cavity ideas; gauges and loop corrections; tensor networks; coding/information problems; and the boundary between probabilistic and amplitude-based graphical descriptions.
+
+This studio uses statistical physics as both an application domain and an algorithmic language. A recurring theme is that the same network can be read in several ways: as a factorized probability law, a message-passing problem, a tensor contraction, or --- after positivity is lost --- an algebraic network of signed or complex amplitudes. The project question is often not simply ``does BP work?'' but \emph{which interpretation survives, which approximation parameter controls the error, and what correction is available beyond the reference calculation?}
+
+\textbf{Primary book map.}
+\begin{itemize}
+    \item \bookch{2}: Ising/pairwise models, factor graphs and normal factor graphs, conditional independence, frustration, and Gaussian models.
+    \item \bookch{3}: exact elimination and exact BP on trees, giving the reference against which approximate quantum/statistical-physics message passing can be judged.
+    \item \bookch{5--6}: gauges, reparametrizations, Bethe free energy, loopy BP, generalized BP, and variational interpretations.
+    \item \bookch{8}: MCMC and equilibrium sampling for spin systems and random media.
+    \item \bookch{9}, \emph{Loop Calculus: Exact Corrections Beyond Belief Propagation}: generalized-loop corrections, cumulant expansions, fractional references, and --- especially Section 9.9 --- the connection to tensor networks and quantum graphical models.
+    \item \bookch{11}: spin dynamics, LDPC/coding, and other application laboratories.
+    \item \bookch{13}: canonical soft-inference laboratories, including Gaussian BP, planar/determinant structure, and matching/permanents.
+    \item \bookch{20}: structured discrete generation, LDPC constraints, temporary inference-time graphical models, BP/fractional corrections, and Sampling Decisions.
+    \item \bookch{21}: synthesis of reference/correction strategies across probabilistic, tensor, and generative formulations.
+\end{itemize}
+
+The August 30 book integration makes this studio more explicit by adding graphical-model/tensor-network duality, quantum-message BP, and an exercise comparing the semantics of probability messages, tensor messages, and quantum messages.
+
+\textbf{Characteristic research questions.}
+\begin{itemize}
+    \item Which identities depend on positivity and probability semantics, and which survive for signed or complex tensor entries?
+    \item Is the relevant small parameter graph topology (few important loops), coordination number, weak coupling, low entanglement/bond dimension, or another compressibility measure?
+    \item Can BP or a variational solution be used as a reference gauge, with loops/tensors/cumulants supplying a controlled correction?
+    \item In coding or discrete generation, when does explicit constraint structure outperform a purely neural decoder, and what part of the inference can be neuralized safely?
+\end{itemize}
+
+\textbf{Natural stress-test parameters.} Loop density; frustration; temperature; coupling strength; coordination; random-field/disorder strength; bond dimension or truncation rank; sign/phase complexity; channel noise; or distance from a tree/planar/exactly contractible regime.
+
+\textbf{Examples of suitable project directions.} BP versus tensor contraction on a small spin/tensor network; gauge choice versus low-rank truncation error; loop corrections through a topology-controlled crossover; classical versus quantum-message semantics on a small tree; or structured decoding where an explicit parity/check graph is retained while only part of the message operator is learned.
+
+\textbf{Suggested starting papers (not exhaustive).}
+\begin{enumerate}[leftmargin=1.7em,itemsep=5pt]
+    \item M.~Chertkov and V.~Y.~Chernyak (2006), \emph{Loop Series for Discrete Statistical Models on Graphs}, \emph{Journal of Statistical Mechanics: Theory and Experiment}, P06009. \href{https://doi.org/10.1088/1742-5468/2006/06/P06009}{doi:10.1088/1742-5468/2006/06/P06009}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a foundational reference for the exact reference--correction viewpoint and the topology-controlled correction of BP developed in Ch.~9.}
+
+    \item E.~Robeva and A.~Seigal (2017), \emph{Duality of Graphical Models and Tensor Networks}. \href{https://arxiv.org/abs/1710.01437}{arXiv:1710.01437}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} makes the graphical-model/tensor-network correspondence precise and provides a clean conceptual bridge from marginalization to contraction (Sec.~9.9).}
+
+    \item J.~Tindall and M.~T.~Fishman (2023), \emph{Gauging Tensor Networks with Belief Propagation}, \emph{SciPost Physics} 15, 222. \href{https://arxiv.org/abs/2306.17837}{arXiv:2306.17837}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} turns BP into a practical gauge-selection mechanism for tensor networks and invites direct experiments on gauge choice versus truncation error (Sec.~9.9).}
+
+    \item J.~Tindall, G.~M.~Sommers, and H.~Kappen (2026), \emph{Contracting Tensor Networks with Generalized Belief Propagation}. \href{https://arxiv.org/abs/2604.24760}{arXiv:2604.24760}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} extends the BP--GBP hierarchy to tensor contraction and gives a contemporary test bed for region choice, accuracy, and computational cost.}
+
+    \item S.~Brandsen, A.~Mandal, and H.~D.~Pfister (2022), \emph{Belief Propagation with Quantum Messages for Symmetric Classical--Quantum Channels}. \href{https://arxiv.org/abs/2207.04984}{arXiv:2207.04984}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} asks which parts of message-passing structure survive when the message semantics become quantum/operator-valued rather than ordinary probabilities (Sec.~9.9).}
+
+    \item J.~Kuck, S.~Chakraborty, H.~Tang, R.~Luo, J.~Song, A.~Sabharwal, and S.~Ermon (2020), \emph{Belief Propagation Neural Networks}. \href{https://arxiv.org/abs/2007.00295}{arXiv:2007.00295}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a natural bridge from classical BP to operator-level neuralization; especially suitable for asking which BP semantics and invariances survive learning (Ch.~15).}
+
+    \item M.~Chertkov (2026), \emph{Driven Quantum Stars as Controlled Primitives for Real-Time Spin Dynamics}. \href{https://arxiv.org/abs/2607.10899}{arXiv:2607.10899}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a complementary controlled expansion organized by coordination and dynamical concentration rather than loop topology, with a direct route to stress-testing classical-to-quantum crossover.}
+\end{enumerate}
+
+
+\studio{Studio III: Optimization / Networked Systems}
+
+\textbf{Scope.} Graph and network optimization; power and infrastructure systems; MAP estimation; state estimation; flow problems; min--max and geometric optimization; hard constraints; relaxations; distributed algorithms; and guarantees/certificates.
+
+Here the central issue is that optimization structure is not merely a source of features for learning: it may provide exact feasibility, integrality, dual bounds, conservation laws, or certificates. The main design question is therefore \emph{what should be learned without sacrificing the structure that makes the original problem trustworthy?} In many cases the best learned object is not the optimizer itself, but a warm start, a message/update rule, a dual variable, an active-set prediction, or a residual correction followed by an exact feasibility/certification step.
+
+\textbf{Primary book map.}
+\begin{itemize}
+    \item \bookch{4}: MAP optimization, probabilistic relaxations, temperature/entropy regularization, and the relation among MAP, marginal inference, and learning.
+    \item \bookch{6}: MAP-LP, variational formulations, min-sum/message passing, and reparametrization.
+    \item \bookch{11}: infrastructure-network inference and control; the August 30 integration adds contemporary neural, physics-informed, and probabilistic optimal-power-flow examples.
+    \item \bookch{12}, \emph{MAP: Exact LP Classes, Message Passing, and Tightening}: submodularity/fractional polymorphisms, total unimodularity, integral linear programs, distributed algorithms, cutting planes, network-flow problems, physics-constrained flows, and learning while retaining feasibility or certificates.
+    \item \bookch{13}: Gaussian graphical models and soft-inference tools relevant to state estimation and network uncertainty.
+    \item \bookch{15}: neuralized operators, physical-network examples, learned certificates, and the distinction among learning a model, an iterative update, a solver/operator, or a reference/correction.
+    \item \bookch{17}: hard constraints versus soft penalties and explicit structure inside a generative/decision mechanism.
+    \item \bookch{21}: known structure plus learned residual, verification beyond empirical accuracy, and the studio-paper audit framework.
+\end{itemize}
+
+The August 30 integration also adds a forward link from Chapter 12 to learning primal optimizers versus dual/certificate objects and to Riemannian/min--max optimization, making the studio broad enough to include geometric optimization beyond classical network flow.
+
+\textbf{Characteristic research questions.}
+\begin{itemize}
+    \item Which properties can be guaranteed exactly: feasibility, conservation, integrality, dual bounds, monotonicity, or a certificate of suboptimality?
+    \item Should learning predict the primal optimizer, the dual/certificate object, an active set, a message field, or a warm start for a classical solver?
+    \item When does replacing an explicit constraint by a large penalty fail qualitatively?
+    \item Can a graph-structured or physics-informed architecture transfer across network size/topology without relearning the governing constraints?
+\end{itemize}
+
+\textbf{Natural stress-test parameters.} Network loading/stress; topology changes or contingencies; nonconvexity; noise and missing observations; relaxation gap; distribution shift; constraint tightness; graph size; or the distance from an exact TUM/submodular/convex regime.
+
+\textbf{Examples of suitable project directions.} Physics-informed or probabilistic OPF on a small network; learning a primal solution versus a dual certificate; comparing hard feasibility with fixed-penalty training; a message-passing solver for a network-flow problem; or a learned warm start followed by exact projection/optimization, with feasibility and certificate quality measured separately from prediction error.
+
+\textbf{Suggested starting papers (not exhaustive).}
+\begin{enumerate}[leftmargin=1.7em,itemsep=5pt]
+    \item D.~Bienstock, M.~Chertkov, and S.~Harnett (2014), \emph{Chance-Constrained Optimal Power Flow: Risk-Aware Network Control under Uncertainty}, \emph{SIAM Review} 56(3), 461--495. \href{https://arxiv.org/abs/1209.5779}{arXiv:1209.5779}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a classical structured optimization baseline in which network physics, uncertainty, and probabilistic constraints are all explicit; useful for defining what a learned or generative replacement must preserve.}
+
+    \item M.~Chertkov, S.~Misra, M.~Vuffray, D.~Krishnamurty, and P.~Van Hentenryck (2017), \emph{Graphical Models and Belief Propagation-Hierarchy for Optimal Physics-Constrained Network Flows}. \href{https://arxiv.org/abs/1702.01890}{arXiv:1702.01890}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} connects physical network flow optimization to graphical-model decomposition and hierarchy, providing a direct bridge between Chs.~6, 11, and 12.}
+
+    \item D.~Gamarnik, D.~Shah, and Y.~Wei (2010), \emph{Belief Propagation for Min-Cost Network Flow: Convergence \& Correctness}, SODA 2010. \href{https://arxiv.org/abs/1004.1586}{arXiv:1004.1586}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a rigorous reference for when distributed message passing exactly solves a network optimization problem and for distinguishing LP exactness from algorithmic convergence (Ch.~12).}
+
+    \item M.~Gao, J.~Yu, Z.~Yang, and J.~Zhao (2024), \emph{A Physics-Guided Graph Convolution Neural Network for Optimal Power Flow}, \emph{IEEE Transactions on Power Systems} 39(1), 380--390. \href{https://doi.org/10.1109/TPWRS.2023.3238377}{doi:10.1109/TPWRS.2023.3238377}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} a concrete point on the spectrum from graph-respecting learned surrogates to physics-retaining optimization, with natural topology-shift and loading stress tests (Chs.~11 and 15).}
+
+    \item A.~Varbella, D.~Briens, B.~Gjorgiev, G.~A.~D'Inverno, and G.~Sansavini (2024), \emph{Physics-Informed GNN for Non-Linear Constrained Optimization: PINCO, a Solver for the AC-Optimal Power Flow}. \href{https://arxiv.org/abs/2410.04818}{arXiv:2410.04818}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} pushes neuralization closer to a constrained solver and invites a careful audit of feasibility, objective quality, transfer, and which classical guarantees remain checkable.}
+
+    \item M.~Tanneau and P.~Van Hentenryck (2024), \emph{Dual Lagrangian Learning for Conic Optimization}. \href{https://arxiv.org/abs/2402.03086}{arXiv:2402.03086}.\\
+    \textcolor{UAgray}{\emph{Why it fits:} learns dual/certificate objects rather than only primal predictions, directly matching the Ch.~12 question of what can be neuralized while preserving independently verifiable bounds.}
+\end{enumerate}
+
+
+\section*{Cross-studio map}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{0.20\linewidth} X X X}
+\toprule
+Studio & Main mathematical objects & Particularly relevant chapters & Typical crossover/failure diagnostic \\
+\midrule
+Continuous Structured GenAI
+& path laws, scores, drifts, controls, forward operators, constraints, importance weights
+& 8, 11, 15, 17--19, 21
+& sample bias, constraint violation, path-weight variance/ESS, loss of locality, terminal mismatch \\
+\addlinespace
+Quantum / Stat Phys / Information
+& factors, messages, loops, gauges, spin/tensor networks, coding constraints
+& 2--3, 5--6, 8--9, 11, 13, 20--21
+& BP residual/error, loop correction size, truncation error, phase/sign effects, decoding failure \\
+\addlinespace
+Optimization / Networked Systems
+& MAP/LP, flows, primal-dual variables, state estimation, feasibility sets, certificates
+& 4, 6, 11--13, 15, 17, 21
+& relaxation gap, infeasibility, certificate loss, topology shift, solver/runtime breakdown \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{Common project standard}
+
+A studio project should not begin with a new architecture. It should begin with a mathematical object and a baseline. The recommended progression is
+\[
+\boxed{\text{formulate}\;\longrightarrow\;\text{reproduce/baseline}\;\longrightarrow\;
+\text{stress-test}\;\longrightarrow\;\text{extend}.}
+\]
+For each project, the student should be able to answer:
+\begin{enumerate}
+    \item What is the exact probability, optimization, or dynamical object?
+    \item What structure is known and retained explicitly?
+    \item What is approximated or learned?
+    \item What baseline/reference calculation can be reproduced first?
+    \item Which parameter moves the problem from an easy regime through a crossover into failure?
+    \item What independent diagnostic, certificate, or exact correction remains available?
+\end{enumerate}
+
+Chapter 21 turns this philosophy into a concrete ``studio-paper audit'': reproduce a central result, identify a hardness/model-mismatch/constraint parameter, drive the method into a documented failure regime, and only then propose an extension. This standard is deliberately shared by all three studios.
+
+Whenever possible, the 	extbf{frontier presentation should serve as the literature-and-baseline stage of this same project}. Reviewing one or two important papers should clarify what result is worth reproducing, what parameter should be used for the stress test, and what extension is mathematically meaningful. The final project is therefore not intended as an unrelated second topic; it should normally be the next step after the frontier review.
+
+\keybox{\textbf{The studios overlap by design.} A project on constrained diffusion for a power network may naturally sit between Studios I and III; a project on tensorized stochastic dynamics may connect Studios I and II; and structured decoding or information-constrained optimization may connect Studios II and III. The studio assignment should identify the project's main mathematical home, not restrict its methods.}
+
+\end{document}
